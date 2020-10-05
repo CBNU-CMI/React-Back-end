@@ -13,7 +13,9 @@ const connection = mysql.createConnection({
 async function getRestaurantData(req) {
   let [rows, fields] = await connection
     .promise()
-    .query(`SELECT * FROM restaurant WHERE day="${req.query.day}"`);
+    .query(
+      `SELECT * FROM restaurant WHERE date="${req.query.date}" AND restaurant_name="${req.query.place}"`
+    );
   return rows;
 }
 
