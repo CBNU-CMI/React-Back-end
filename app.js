@@ -6,9 +6,17 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var restaurantRouter = require("./routes/restaurant");
 
+const cors = require("cors");
 var app = express();
 
 // view engine setup
+let corsOptions = {
+  origin: "http://localhost:8070", // 허락하고자 하는 요청 주소
+  credentials: true, // true로 하면 설정한 내용을 response 헤더에 추가 해줍니다.
+};
+
+app.use(cors(corsOptions)); // config 추가
+
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
