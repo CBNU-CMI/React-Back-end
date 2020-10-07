@@ -15,7 +15,7 @@ async function getScheduleData(req) {
   let [rows, fields] = await connection
     .promise()
     .query(
-      `SELECT * FROM schedule WHERE MONTH(start_date)="${req.query.date}"`
+      `SELECT * FROM schedule WHERE YEAR(start_date)="${req.query.year}" AND MONTH(start_date)="${req.query.month}"`
     );
 
   return rows;
