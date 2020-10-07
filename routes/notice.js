@@ -3,13 +3,13 @@ var router = express.Router();
 const {getMajorSiteList,getCommonSiteList} = require("../db/notice");
 
 router.get("/site/list/major", async function (req, res, next) {
-  const rows = await getMajorSiteList(req.headers.token)
+  const rows = await getMajorSiteList(req.headers.token,req.query.offset)
 //   console.log(rows)
   res.json(rows);
 });
 
 router.get("/site/list/common", async function (req, res, next) {
-    const rows = await getCommonSiteList(req.headers.token)
+    const rows = await getCommonSiteList(req.headers.token,req.query.offset)
     // console.log(rows)
     res.json(rows);
   });
