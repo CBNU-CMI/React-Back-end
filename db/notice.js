@@ -13,6 +13,15 @@ const connection = mysql.createConnection({
 
 const noticeLimit = 15
 
+async function getSiteList(site_id,offset = 1) {
+  let [rows, fields] = await connection
+    .promise()
+    .query(
+      `SELECT * FROM notice_detail_no_contents WHERE site_id = ${site_id} order by date desc, id desc LIMIT ${noticeLimit} OFFSET ${noticeLimit*(offset-1)}`
+    );
+  return rows;
+}
+
 async function getMajorSiteList(token,offset = 1) {
   let [rows, fields] = await connection
     .promise()
@@ -31,4 +40,4 @@ async function getCommonSiteList(token,offset = 1) {
     return rows;
   }
 
-module.exports = {getMajorSiteList,getCommonSiteList};
+module.exports = {getSiteList,getMajorSiteList,getCommonSiteList};
