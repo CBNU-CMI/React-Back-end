@@ -13,6 +13,15 @@ const connection = mysql.createConnection({
 
 const noticeLimit = 15
 
+async function getNotice(noticeId){
+  let [rows, fields] = await connection
+  .promise()
+  .query(
+    `SELECT * FROM notice WHERE id = ${noticeId}`
+  );
+return rows;
+}
+
 async function getSiteList(site_id,offset = 1) {
   let [rows, fields] = await connection
     .promise()
@@ -40,4 +49,4 @@ async function getCommonSiteList(token,offset = 1) {
     return rows;
   }
 
-module.exports = {getSiteList,getMajorSiteList,getCommonSiteList};
+module.exports = {getNotice,getSiteList,getMajorSiteList,getCommonSiteList};

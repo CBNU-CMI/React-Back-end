@@ -1,7 +1,14 @@
 const { query } = require("express");
 var express = require("express");
 var router = express.Router();
-const {getSiteList,getMajorSiteList,getCommonSiteList} = require("../db/notice");
+const {getNotice,getSiteList,getMajorSiteList,getCommonSiteList} = require("../db/notice");
+
+router.get("/", async function (req, res, next) {
+  console.log(req.query)
+  const rows = await getNotice(req.query.noticeId)
+//   console.log(rows)
+  res.json(rows[0]);
+});
 
 router.get("/site/:site_id", async function (req, res, next) {
   const rows = await getSiteList(req.params.site_id,req.query.offset)

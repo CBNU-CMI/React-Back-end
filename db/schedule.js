@@ -12,6 +12,7 @@ const connection = mysql.createConnection({
 });
 
 async function getScheduleData(req) {
+  console.log(req.query)
   let [rows, fields] = await connection
     .promise()
     .query(
