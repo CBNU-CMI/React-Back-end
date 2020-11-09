@@ -12,11 +12,10 @@ const connection = mysql.createConnection({
 });
 
 async function getScheduleData(req) {
-  console.log(req.query)
   let [rows, fields] = await connection
     .promise()
     .query(
-      `SELECT * FROM schedule WHERE MONTH(start_date)="${req.query.date}"`
+      `SELECT * FROM schedule WHERE YEAR(start_date)="${req.query.year}" and MONTH(start_date)="${req.query.month}"`
     );
 
   return rows;
