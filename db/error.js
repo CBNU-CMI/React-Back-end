@@ -17,11 +17,18 @@ async function getNotice(req) {
   return rows;
 }
 
+async function getNoticeSiteList(req) {
+  const query = `SELECT IF(ISNULL(site.category2),site.category1,site.category2) AS type, site.category3 AS type2, id  AS site_id FROM site`;
+  let [rows, fields] = await connection.promise().query(query);
+  return rows;
+}
+
 async function getNoticeErrorSiteList(req) {
   const query = `SELECT IF(ISNULL(notice.category2),notice.category1,notice.category2) AS type, notice.category3 AS type2, site_id FROM error INNER JOIN notice_detail_no_contents AS notice ON notice.id = error.notice_id`;
   let [rows, fields] = await connection.promise().query(query);
   return rows;
 }
+
 
 async function getRestaurantErrorList(req) {
   const query = `SELECT restaurant_name AS type FROM error WHERE NOT ISNULL(restaurant_name)`;
@@ -41,6 +48,7 @@ async function getErrorLog(req) {
 
 module.exports = {
   getNotice,
+  getNoticeSiteList,
   getNoticeErrorSiteList,
   getRestaurantErrorList,
   getErrorLog,
