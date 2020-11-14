@@ -69,6 +69,14 @@ async function getSiteListCateogry(token, site_id) {
   return rows;
 }
 
+async function getNoticeListScrap(list) {
+  const sql = `SELECT * FROM notice_detail_no_contents WHERE id IN (${list.join(
+    ","
+  )}) order by date desc, id desc`;
+  let [rows, fields] = await connection.promise().query(sql);
+  return rows;
+}
+
 module.exports = {
   getNotice,
   getSiteList,
@@ -76,4 +84,5 @@ module.exports = {
   getCommonSiteList,
   getNoticeByCateogry,
   getSiteListCateogry,
+  getNoticeListScrap,
 };
