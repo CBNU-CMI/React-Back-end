@@ -16,7 +16,7 @@ const noticeLimit = 15;
 async function getNotice(noticeId) {
   let [rows, fields] = await connection
     .promise()
-    .query(`SELECT * FROM notice WHERE id = ${noticeId}`);
+    .query(`SELECT * FROM notice_detail WHERE id = ${noticeId}`);
   return rows;
 }
 
