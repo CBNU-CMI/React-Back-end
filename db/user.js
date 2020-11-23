@@ -11,14 +11,16 @@ const connection = mysql.createPool({
   timezone: "UTC+9",
 });
 
-async function getScheduleData(req) {
-  let [rows, fields] = await connection
-    .promise()
-    .query(
-      `SELECT * FROM schedule WHERE YEAR(start_date)="${req.query.year}" and MONTH(start_date)="${req.query.month}"`
-    );
+async function addUser({ fcm_token, type }) {
+    const query = mysql.format("INSERT INTO user SET ?", {
+      fcm_token,
+      type,
+    });
+    let [rows, fields] = await connection.promise().query(query);
+    return rows;
+  }
 
-  return rows;
-}
-
-module.exports = getScheduleData;
+  module.exports = {
+    addUser
+  };
+  

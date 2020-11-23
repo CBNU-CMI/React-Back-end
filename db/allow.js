@@ -3,11 +3,12 @@ const mysql = require("mysql2");
 const dbConfig = require("./config.json");
 
 // create the connection to database
-const connection = mysql.createConnection({
+const connection = mysql.createPool({
   host: dbConfig.host,
   user: dbConfig.user,
   password: dbConfig.password,
   database: dbConfig.database,
+  timezone: "UTC+9",
 });
 
 async function getAllowSiteList(token) {
