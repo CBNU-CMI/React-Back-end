@@ -2,7 +2,7 @@
 <p align="center">A Node.js server application that powers the <b><a href="https://github.com/CBNU-CMI/cbnu-alrimi">충림이</a></b></p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/license/CBNU-CMI/cbnu-alrimi-server" />
+  <img src="https://img.shields.io/github/license/payw-org/eodiro-server" />
   <a href="https://github.com/nodejs/node/blob/master/doc/changelogs/CHANGELOG_V13.md#13.10.1">
     <img alt="npm" src="https://img.shields.io/badge/node-v13.14.0-brightgreen">
   </a>
